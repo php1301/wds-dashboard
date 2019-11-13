@@ -51,9 +51,7 @@
       }
     }
   }
-}
 
-.app-container {
   &.collapsible-drawer {
     & .app-main-header {
       width: auto !important;
@@ -62,9 +60,7 @@
       right: 0;
     }
   }
-}
 
-.app-container {
   &.mini-drawer {
     & .app-main-header {
       width: auto !important;
@@ -74,10 +70,37 @@
     }
 
     .app-sidebar {
-      //@include flex(0, 0, $mini-drawer-width);
       width: $mini-drawer-width;
       min-width: $mini-drawer-width;
       max-width: $mini-drawer-width;
     }
+  }
+}
+
+.app-header-horizontal {
+  & .app-main-header {
+    left: auto !important;
+    position: relative !important;
+    right: auto !important;
+
+    & + .app-top-nav {
+      @include box-shadow(0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12));
+    }
+  }
+
+  & .app-top-nav {
+    padding: 0 24px;
+    position: relative;
+    z-index: 1101;
+
+    & .app-toolbar {
+      min-height: $app-bar-height - 30px;
+      height: $app-bar-height - 30px;
+      max-height: $app-bar-height - 30px;
+    }
+  }
+
+  & .app-main-header-top {
+    z-index: 1102;
   }
 }

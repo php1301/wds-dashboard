@@ -1,16 +1,18 @@
 import React from 'react';
 import {Redirect, Route, Switch} from 'react-router-dom';
-import ProductsList from './routes/ProductsList'
-import ProductsGrid from './routes/ProductsGrid'
+import asyncComponent from '../../../util/asyncComponent';
 
 const eCommerce = ({match}) => (
-    <div className="app-wrapper">
-        <Switch>
-            <Redirect exact from={`${match.url}/`} to={`${match.url}/products-list`}/>
-            <Route path={`${match.url}/products-list`} component={ProductsList}/>
-            <Route path={`${match.url}/products-grid`} component={ProductsGrid}/>
-        </Switch>
-    </div>
+  <div className="app-wrapper">
+    <Switch>
+      <Redirect exact from={`${match.url}/`} to={`${match.url}/products-list`}/>
+      <Route path={`${match.url}/products-list`}
+             component={asyncComponent(() => import('./routes/ProductsList'))}/>
+      <Route path={`${match.url}/products-grid`}
+             component={asyncComponent(() => import('./routes/ProductsGrid'))}/>
+      <Route component={asyncComponent(() => import('app/routes/extraPages/routes/404'))}/>
+    </Switch>
+  </div>
 );
 
 export default eCommerce;

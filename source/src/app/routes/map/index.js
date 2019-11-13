@@ -1,37 +1,27 @@
 import React from 'react';
 import {Redirect, Route, Switch} from 'react-router-dom';
-import Directions from './routes/directions'
-import Drawing from './routes/drawingView'
-import EventHanlder from './routes/eventHanlder'
-import GeoLocation from './routes/geoLocation'
-import KmLayer from './routes/kmLayer'
-import MapClustering from './routes/mapClustering'
-import Overlay from './routes/mapOverlay'
-import PopUpInfo from './routes/popUpInfo'
-import Simple from './routes/simple'
-import StreetView from './routes/streetView'
-import Styled from './routes/styled'
-import TrafficLayer from './routes/trafficLayer'
+import asyncComponent from '../../../util/asyncComponent';
 
 
 const Map = ({match}) => (
-    <div className="app-wrapper">
-        <Switch>
-            <Redirect exact from={`${match.url}/`} to={`${match.url}/simple`}/>
-            <Route path={`${match.url}/directions`} component={Directions}/>
-            <Route path={`${match.url}/drawing`} component={Drawing}/>
-            <Route path={`${match.url}/event`} component={EventHanlder}/>
-            <Route path={`${match.url}/geo-location`} component={GeoLocation}/>
-            <Route path={`${match.url}/kml`} component={KmLayer}/>
-            <Route path={`${match.url}/clustering`} component={MapClustering}/>
-            <Route path={`${match.url}/overlay`} component={Overlay}/>
-            <Route path={`${match.url}/popup-info`} component={PopUpInfo}/>
-            <Route path={`${match.url}/simple`} component={Simple}/>
-            <Route path={`${match.url}/street-view`} component={StreetView}/>
-            <Route path={`${match.url}/styled`} component={Styled}/>
-            <Route path={`${match.url}/traffic`} component={TrafficLayer}/>
-        </Switch>
-    </div>
+  <div className="app-wrapper">
+    <Switch>
+      <Redirect exact from={`${match.url}/`} to={`${match.url}/simple`}/>
+      <Route path={`${match.url}/directions`} component={asyncComponent(() => import('./routes/directions'))}/>
+      <Route path={`${match.url}/drawing`} component={asyncComponent(() => import('./routes/drawingView'))}/>
+      <Route path={`${match.url}/event`} component={asyncComponent(() => import('./routes/eventHanlder'))}/>
+      <Route path={`${match.url}/geo-location`} component={asyncComponent(() => import('./routes/geoLocation'))}/>
+      <Route path={`${match.url}/kml`} component={asyncComponent(() => import('./routes/kmLayer'))}/>
+      <Route path={`${match.url}/clustering`} component={asyncComponent(() => import('./routes/mapClustering'))}/>
+      <Route path={`${match.url}/overlay`} component={asyncComponent(() => import('./routes/mapOverlay'))}/>
+      <Route path={`${match.url}/popup-info`} component={asyncComponent(() => import('./routes/popUpInfo'))}/>
+      <Route path={`${match.url}/simple`} component={asyncComponent(() => import('./routes/simple'))}/>
+      <Route path={`${match.url}/street-view`} component={asyncComponent(() => import('./routes/streetView'))}/>
+      <Route path={`${match.url}/styled`} component={asyncComponent(() => import('./routes/styled'))}/>
+      <Route path={`${match.url}/traffic`} component={asyncComponent(() => import('./routes/trafficLayer'))}/>
+      <Route component={asyncComponent(() => import('app/routes/extraPages/routes/404'))}/>
+    </Switch>
+  </div>
 );
 
 export default Map;

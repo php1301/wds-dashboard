@@ -1,19 +1,19 @@
 import {combineReducers} from 'redux';
-import {routerReducer} from 'react-router-redux';
+import {connectRouter} from 'connected-react-router'
 import Settings from './Settings';
-import ChatData from "./Chat";
-import Contact from "./Contact";
-import Mail from "./Mail";
-import ToDo from "./ToDo";
+import ChatData from './Chat';
+import Contact from './Contact';
+import Mail from './Mail';
+import ToDo from './ToDo';
+import Auth from './Auth';
 
 
-const reducers = combineReducers({
-    routing: routerReducer,
-    settings: Settings,
-    chatData: ChatData,
-    contacts: Contact,
-    mail: Mail,
-    toDo: ToDo,
+export default (history) => combineReducers({
+  router: connectRouter(history),
+  settings: Settings,
+  chatData: ChatData,
+  contacts: Contact,
+  mail: Mail,
+  toDo: ToDo,
+  auth: Auth,
 });
-
-export default reducers;

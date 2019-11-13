@@ -1,29 +1,28 @@
 import React from 'react';
-import {ResponsiveContainer} from 'recharts';
 
-const ReportBox = ({styleName, heading, title, detail, children, subHeadingColor}) => {
-    if (!styleName)
-        styleName = "";
-    if (!subHeadingColor)
-        subHeadingColor = "";
-    return (
-        <div className={`jr-card ${styleName}`}>
-            {heading && <div className="jr-card-header">
-                <h3 className="mb-0">{heading}</h3>
-            </div>}
-            <div className="row align-items-center">
-                <div className="col-5">
-                    <h1 className="chart-f30 font-weight-light mb-1">{title}</h1>
-                    <span className={`sub-heading ${subHeadingColor}`}>{detail}</span>
-                </div>
-                <div className="col-7">
-                    <ResponsiveContainer height={95}>
-                        {children}
-                    </ResponsiveContainer>
-                </div>
-            </div>
+const ReportBox = ({styleName, icon, price, detail, children}) => {
+  if (!styleName)
+    styleName = "";
+  return (
+    <div className={`jr-card jr-hr-chart-card p-0 ${styleName}`}>
+      <div className="row no-gutters align-items-center">
+        <div className="col-6 pr-2">
+          <div className="jr-hr-chart-content">
+            <span className="d-block mb-3">
+              <i className={`zmdi zmdi-${icon} zmdi-hc-fw zmdi-hc-lg`}/>
+            </span>
+            <span className="d-block jr-fs-xxl font-weight-medium mb-1">{price}</span>
+            <span className="d-block jr-fs-13">{detail}</span>
+          </div>
         </div>
-    );
+        <div className="col-6">
+          <div className="jr-hr-chart">
+            {children}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default ReportBox;

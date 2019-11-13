@@ -3,15 +3,15 @@ import {CartesianGrid, ResponsiveContainer, Scatter, ScatterChart, Tooltip, XAxi
 import data from './data';
 
 const SimpleScatterChart = () => (
-    <ResponsiveContainer width="100%" height={400}>
-        <ScatterChart margin={{top: 10, right: 0, left: -25, bottom: 0}}>
-            <XAxis dataKey={'x'} name='stature' unit='cm' />
-            <YAxis dataKey={'y'} name='weight' unit='kg' />
-            <Scatter name='A school' data={data} fill='#3367d6' />
-            <CartesianGrid />
-            <Tooltip cursor={{strokeDasharray: '3 3'}} />
-        </ScatterChart>
-    </ResponsiveContainer>
+  <ResponsiveContainer width="100%" height={400}>
+    <ScatterChart margin={{top: 10, right: 0, left: -25, bottom: 0}}>
+      <XAxis dataKey={'x'} name='stature' unit='cm'/>
+      <YAxis dataKey={'y'} name='weight' unit='kg'/>
+      <Scatter name='A school' data={data} fill='#3367d6'/>
+      <CartesianGrid/>
+      <Tooltip cursor={{strokeDasharray: '3 3'}}/>
+    </ScatterChart>
+  </ResponsiveContainer>
 );
 
 export default SimpleScatterChart;

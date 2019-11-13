@@ -9,65 +9,74 @@ import HorizontalNonLinearAlternativeLabelStepper from './nonLinear/HorizontalNo
 import VerticalLinearStepper from './vertical/VerticalLinearStepper';
 import CardBox from 'components/CardBox';
 import ContainerHeader from 'components/ContainerHeader';
+import IntlMessages from 'util/IntlMessages';
 
 const Stepper = ({match}) => {
-    return (
-        <div className="animated slideInUpTiny animation-duration-3">
-            <ContainerHeader title="Stepper" match={match}
-                             description="Steppers convey progress through numbered steps."/>
+  return (
+    <div className="animated slideInUpTiny animation-duration-3">
+      <ContainerHeader title={<IntlMessages id="sidebar.components.stepper"/>} match={match}/>
 
-            <div className="row mb-md-4">
-                <CardBox styleName="col-lg-12" childrenStyle="d-flex justify-content-center"
-                         heading="Horizontal Linear" headerOutside>
-                    <HorizontalLinearStepper/>
-                </CardBox>
-            </div>
+      <div className="row mb-md-3">
+        <CardBox styleName="col-lg-12" childrenStyle="d-flex justify-content-center"
+                 heading={<IntlMessages id="component.stepper.horizontalLinear"/>} headerOutside>
+          <HorizontalLinearStepper/>
+        </CardBox>
+      </div>
 
-            <div className="row mb-md-4">
-                <CardBox styleName="col-lg-12" childrenStyle="d-flex justify-content-center"
-                         heading="Horizontal Linear - Alternative Label" headerOutside>
-                    <HorizontalLabelPositionBelowStepper/>
-                </CardBox>
-            </div>
+      <div className="row mb-md-3">
+        <CardBox styleName="col-lg-12" childrenStyle="d-flex justify-content-center"
+                 heading={<IntlMessages
+                   id="component.stepper.horizontalLinearAlternativeLabel"/>}
+                 headerOutside>
+          <HorizontalLabelPositionBelowStepper/>
+        </CardBox>
+      </div>
 
-            <div className="row mb-md-4">
-                <CardBox styleName="col-lg-12" childrenStyle="d-flex justify-content-center" heading="Vertical Stepper" headerOutside>
-                    <VerticalLinearStepper/>
-                </CardBox>
-            </div>
+      <div className="row mb-md-3">
+        <CardBox styleName="col-lg-12" childrenStyle="d-flex justify-content-center"
+                 heading={<IntlMessages id="component.stepper.vertical"/>} headerOutside>
+          <VerticalLinearStepper/>
+        </CardBox>
+      </div>
 
 
-            <div className="row mb-md-4">
-                <CardBox styleName="col-lg-12" childrenStyle="d-flex justify-content-center"
-                         heading="Horizontal Non-linear" headerOutside>
-                    <HorizontalNonLinearStepper/>
-                </CardBox>
-            </div>
+      <div className="row mb-md-3">
+        <CardBox styleName="col-lg-12" childrenStyle="d-flex justify-content-center"
+                 heading={<IntlMessages id="component.stepper.horizontalNonLinear"/>}
+                 headerOutside>
+          <HorizontalNonLinearStepper/>
+        </CardBox>
+      </div>
 
-            <div className="row mb-md-4">
-                <CardBox styleName="col-lg-12" childrenStyle="d-flex justify-content-center"
-                         heading="Horizontal Non Linear - Alternative Label" headerOutside>
-                    <HorizontalNonLinearAlternativeLabelStepper/>
-                </CardBox>
-            </div>
+      <div className="row mb-md-3">
+        <CardBox styleName="col-lg-12" childrenStyle="d-flex justify-content-center"
+                 heading={<IntlMessages
+                   id="component.stepper.horizontalNonLinearAlternativeLabel"/>}
+                 headerOutside>
+          <HorizontalNonLinearAlternativeLabelStepper/>
+        </CardBox>
+      </div>
 
-            <div className="row mb-md-4">
-                <CardBox heading="Mobile Stepper - Dots" headerOutside>
-                    <DotsMobileStepper/>
-                </CardBox>
-                <CardBox heading="Mobile Stepper - Progress" headerOutside>
-                    <ProgressMobileStepper/>
-                </CardBox>
-            </div>
+      <div className="row mb-md-3">
+        <CardBox heading={<IntlMessages id="component.stepper.mobileDots"/>}
+                 headerOutside>
+          <DotsMobileStepper/>
+        </CardBox>
+        <CardBox heading={<IntlMessages id="component.stepper.mobileProgress"/>}
+                 headerOutside>
+          <ProgressMobileStepper/>
+        </CardBox>
+      </div>
 
-            <div className="row">
-                <CardBox styleName="col-lg-12" childrenStyle="d-flex justify-content-center"
-                         heading="Mobile Stepper - Text" headerOutside>
-                    <TextMobileStepper/>
-                </CardBox>
-            </div>
-        </div>
-    );
+      <div className="row">
+        <CardBox styleName="col-lg-12" childrenStyle="d-flex justify-content-center"
+                 heading={<IntlMessages id="component.stepper.mobileText"/>}
+                 headerOutside>
+          <TextMobileStepper/>
+        </CardBox>
+      </div>
+    </div>
+  );
 };
 
 export default (Stepper);

@@ -11,27 +11,29 @@
 }
 
 .mail-user-info {
-  margin-bottom: 10px;
   @include display-flex();
   @include align-items(center);
 
   & .avatar {
-    margin-right: 10px;
+    margin: 5px 10px 0;
   }
 
   & .time,
   & button {
     margin-left: auto;
   }
+
+  & .badge {
+    margin-bottom: 0;
+  }
 }
 
-.mail-list {
+.module-list-item.mail-cell {
+  @include display-flex();
 }
 
 .mail-detail {
-  & .module-list-scroll {
-    padding: 24px;
-  }
+  padding: 24px !important;
 }
 
 .mail-header {
@@ -49,6 +51,7 @@
 
 .show-detail {
   cursor: pointer;
+  margin-top: 10px;
 }
 
 .text-truncate {
@@ -58,21 +61,19 @@
   white-space: nowrap;
 }
 
-.subject {
-  font-weight: 500;
-}
-
 .module-list-content {
   & .subject {
-    max-width: 900px;
     @extend .text-truncate;
   }
 
   & .message {
     @include display-flex(flex, column, nowrap);
+    color: darken($gray-500, 10%);
+    font-size: 13px;
+
     p {
       @extend .text-truncate;
-      max-width: 900px;
+      margin-bottom: 8px;
     }
   }
 }
@@ -82,7 +83,7 @@
 }
 
 .sender-name {
-  margin-right: 8px;
+  margin-right: 0;
   font-weight: 500;
   font-size: 15px;
 }
@@ -96,70 +97,9 @@
   }
 }
 
-@media screen and (max-width: 1599px) {
-  .module-list-content {
-    & .subject,
-    & .message p {
-      max-width: 800px;
-    }
-  }
-}
-
-@media screen and (max-width: 1499px) {
-  .module-list-content {
-    & .subject,
-    & .message p {
-      max-width: 700px;
-    }
-  }
-}
-
-@media screen and (max-width: 1399px) {
-  .module-list-content {
-    & .subject,
-    & .message p {
-      max-width: 600px;
-    }
-  }
-}
-
-@media screen and (max-width: 1299px) {
-  .module-list-content {
-    & .subject,
-    & .message p {
-      max-width: 500px;
-    }
-  }
-}
-
-@media screen and (max-width: 1199px) {
-  .module-list-content {
-    & .subject,
-    & .message p {
-      max-width: 800px;
-    }
-  }
-}
-
 @media screen and (max-width: 991px) {
-  .module-list-content {
-    & .subject,
-    & .message p {
-      max-width: 620px;
-    }
-  }
-
   .module-list-item.mail-cell {
     padding-right: 20px;
-  }
-}
-
-@media screen and (max-width: 767px) {
-  .module-list-content {
-    & .subject,
-    & .message p {
-      max-width: 400px;
-    }
   }
 }
 
@@ -173,28 +113,11 @@
   .mail-detail {
     @include flex(1, 1, auto);
     max-width: 100%;
-
-    & .module-list-scroll {
-      padding: 24px;
-    }
-  }
-
-  .module-list-content {
-    & .subject,
-    & .message p {
-      max-width: 350px;
-    }
+    padding: 24px;
   }
 }
 
 @media screen and (max-width: 499px) {
-  .module-list-content {
-    & .subject,
-    & .message p {
-      max-width: 250px;
-    }
-  }
-
   .mail-header {
     display: block;
     @include align-items(flex-start);
@@ -213,14 +136,5 @@
 
   .MuiDialog-paperWidthSm-99 {
     max-width: 250px !important;
-  }
-}
-
-@media screen and (max-width: 399px) {
-  .module-list-content {
-    & .subject,
-    & .message p {
-      max-width: 160px;
-    }
   }
 }

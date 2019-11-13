@@ -4,6 +4,6 @@
   "private": true,
   "main": "./index.js",
   "dependencies": {
-    "react-owl-carousel": "^2.2.0"
+    "slick-carousel": "^2.2.0"
   }
 }

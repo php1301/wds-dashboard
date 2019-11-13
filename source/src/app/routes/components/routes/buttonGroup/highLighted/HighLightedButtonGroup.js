@@ -1,15 +1,15 @@
 import React from 'react';
 import {ButtonGroup} from 'reactstrap';
-import Button from 'material-ui/Button';
+import Button from '@material-ui/core/Button';
 
 const HighLightedButtonGroup = ({isVertical}) => {
-    return (
-        <ButtonGroup vertical={isVertical}>
-            <Button className="jr-btn text-muted bg-grey lighten-2">Left</Button>{' '}
-            <Button className="jr-btn bg-primary text-white">Middle</Button>{' '}
-            <Button className="jr-btn text-muted bg-grey lighten-2">Right</Button>
-        </ButtonGroup>
-    );
+  return (
+    <ButtonGroup vertical={isVertical}>
+      <Button className="jr-btn">Left</Button>
+      <Button className="jr-btn active">Middle</Button>
+      <Button className="jr-btn">Right</Button>
+    </ButtonGroup>
+  );
 };
 
 export default HighLightedButtonGroup;

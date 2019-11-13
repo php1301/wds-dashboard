@@ -16,7 +16,7 @@
 .color-theme-header {
   background-color: $app-primary;
   color: $white;
-  padding: 16px 25px;
+  padding: 13px 25px;
   text-transform: uppercase;
   @include display-flex();
   @include align-items(center);
@@ -24,6 +24,7 @@
 
   & .color-theme-title {
     margin-bottom: 0;
+    color: $white;
   }
 
   @media screen and (max-width: 499px) {
@@ -55,17 +56,22 @@
     margin-bottom: 10px;
   }
 
-  & li a {
-    @extend %size-50;
+  & li span.jr-link {
+    height: 45px;
+    width: 45px;
+    line-height: 45px;
     display: inline-block;
     color: transparent !important;
     position: relative;
+    cursor: pointer;
 
     &:before {
       content: "\f26b";
       font-family: "Material-Design-Iconic-Font";
       font-size: 20px;
-      @extend %size-50;
+      height: 45px;
+      width: 45px;
+      line-height: 45px;
       position: absolute;
       top: 0;
       left: 0;
@@ -76,7 +82,7 @@
     }
   }
 
-  & li a.active {
+  & li span.jr-link.active {
     &:before {
       display: block;
     }
@@ -84,7 +90,7 @@
 }
 
 .cr-op-dark-sidebar {
-  & li a {
+  & li span.jr-link {
     &:after {
       content: '';
       position: absolute;
@@ -113,5 +119,16 @@
 @media screen and (max-width: 499px) {
   .color-theme .jr-btn {
     padding: 10px 15px !important;
+  }
+}
+
+.side-nav-option .sidenav-dir {
+  @include display-flex();
+  margin: 0 -8px;
+
+  & > label {
+    width: 50%;
+    margin: 0;
+    padding: 0 8px;
   }
 }

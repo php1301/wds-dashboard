@@ -1,25 +1,23 @@
 import React from 'react';
-import Avatar from 'material-ui/Avatar';
+import Avatar from '@material-ui/core/Avatar';
 
 const UserCell = ({user}) => {
-    const {id, title, image, desc} = user;
-    return (
+  const {id, title, image, desc} = user;
+  return (
 
-        <div className="user-profile d-flex flex-row align-items-center">
-            <Avatar
-                alt={title}
-                src={image}
-                className="user-avatar"
-            />
-            <div className="user-detail">
-                <h5 className="text-muted text-uppercase mb-0">
-                    <small>{title}</small>
-                </h5>
-                <div className="user-description">{desc}</div>
-            </div>
-        </div>
+    <div key={id} className="user-profile d-flex flex-row align-items-center">
+      <Avatar
+        alt={title}
+        src={image}
+        className="user-avatar-lg"
+      />
+      <div className="user-detail">
+        <span className="jr-fs-11 text-light text-uppercase">{title}</span>
+        <p className="mb-0">{desc}</p>
+      </div>
+    </div>
 
-    );
+  );
 };
 
 export default UserCell;

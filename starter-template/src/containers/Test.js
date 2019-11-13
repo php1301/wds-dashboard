@@ -5,11 +5,11 @@ import 'styles/app.scss';
 
 
 class Test extends Component {
-    render() {
-        return (
-            <TestComponent />
-        );
-    }
+  render() {
+    return (
+      <TestComponent/>
+    );
+  }
 }
 
 export default Test;

@@ -3,7 +3,7 @@
 .contact-item {
   @include align-items(center);
   @include display-flex();
-  border-bottom: solid 1px $gray-400;
+  border-bottom: solid 1px $gray-200;
   padding: 8px 12px;
 }
 
@@ -26,6 +26,7 @@
 
 .modal-box-header {
   color: $white;
+  @include border-top-radius(4px);
 }
 
 .modal-box-header h2 {
@@ -50,11 +51,12 @@
 }
 
 .modal-box-footer {
-  border-top: solid 1px $gray-400;
-  padding: 24px;
+  padding: 0 24px 24px;
 
-  & button:last-child {
-    margin-left: auto;
+  & .attach-file {
+    @include display-flex();
+    @include align-items(center);
+    margin-bottom: 15px;
   }
 }
 
@@ -65,9 +67,16 @@
   z-index: 100;
 }
 
-.draggable-icon,
-.draggable-icon:focus {
+.draggable-icon {
   cursor: all-scroll;
+  color: $gray-600;
+
+  &:hover,
+  &:focus,
+  &:active {
+    cursor: all-scroll;
+    color: $gray-900;
+  }
 }
 
 .module-side-nav {
@@ -107,5 +116,11 @@
     .modal-box-mail & {
       min-width: 250px;
     }
+  }
+}
+
+@media screen and (max-width: 399px) {
+  .con-inf-mw-100 {
+    min-width: 100% !important;
   }
 }

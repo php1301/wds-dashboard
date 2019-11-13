@@ -1,369 +1,303 @@
 import React, {Component} from 'react';
-import Drawer from 'material-ui/Drawer';
+import Drawer from '@material-ui/core/Drawer';
 import {connect} from 'react-redux'
-import IconButton from 'material-ui/IconButton';
-import Checkbox from 'material-ui/Checkbox';
-import Button from 'material-ui/Button';
-import Snackbar from 'material-ui/Snackbar';
-import 'jquery-slimscroll/jquery.slimscroll.min';
+import IconButton from '@material-ui/core/IconButton';
+import Checkbox from '@material-ui/core/Checkbox';
+import Button from '@material-ui/core/Button';
+import Snackbar from '@material-ui/core/Snackbar';
 import ContactList from 'components/contact/ContactList';
-import SearchBox from 'components/SearchBox/index';
+import AppModuleHeader from 'components/AppModuleHeader/index';
 import AddContact from 'components/contact/AddContact';
-
-
+import IntlMessages from 'util/IntlMessages';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import {
-    addFavourite,
-    filterContact,
-    getAllContact,
-    getUnselectedAllContact,
-    handleRequestClose,
-    onAddContact,
-    onAllContactSelect,
-    onContactClose,
-    onContactSelect,
-    onDeleteContact,
-    onDeleteSelectedContact,
-    onFilterOptionSelect,
-    onSaveContact,
-    onToggleDrawer,
-    updateContactUser
+  addFavourite,
+  fetchContacts,
+  filterContact,
+  getAllContact,
+  getUnselectedAllContact,
+  handleRequestClose,
+  onAddContact,
+  onAllContactSelect,
+  onContactClose,
+  onContactSelect,
+  onDeleteContact,
+  onDeleteSelectedContact,
+  onFilterOptionSelect,
+  onSaveContact,
+  onToggleDrawer,
+  updateContactUser
 } from 'actions/Contact';
 
+import CustomScrollbars from 'util/CustomScrollbars';
 
 let contactId = 723812738;
 
 const filterOptions = [
-    {
-        id: 1,
-        name: 'All contacts',
-        icon: 'zmdi-menu'
-    }, {
-        id: 2,
-        name: 'Frequently contacted',
-        icon: 'zmdi-time-restore'
+  {
+    id: 1,
+    name: 'All contacts',
+    icon: 'zmdi-menu'
+  }, {
+    id: 2,
+    name: 'Frequently contacted',
+    icon: 'zmdi-time-restore'
 
-    }, {
+  }, {
 
-        id: 3,
-        name: 'Starred contacts',
-        icon: 'zmdi-star'
-    }
+    id: 3,
+    name: 'Starred contacts',
+    icon: 'zmdi-star'
+  }
 ];
 
 class ContactWithRedux extends Component {
 
-    ContactSideBar = (user) => {
-        return <div className="module-side">
-            <div className="module-side-header">
-
-                <div className="module-logo mb-4">
-                    <i className="zmdi zmdi-account-box mr-4"/>
-                    <span>Contacts</span>
-                </div>
-
-                <div className="user-detail d-flex flex-row mb-3">
-                    <img className="rounded-circle size-40" alt={user.name}
-                         src={user.avatar}/>
-                    <div className="module-user-info mx-2 mt-1 mb-0  ">
-                        <div className="module-title">
-                            <h5 className="mb-0 text-white">{user.name}</h5></div>
-                        <div className="module-user-detail">
-                            <a href="javascript:void(0)"
-                               className="text-white">{user.email}</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className="module-side-content">
-                <div className="module-side-scroll">
-                    <div className="module-side-nav">
-                        <ul className="module-nav">
-                            {filterOptions.map(option => <li key={option.id} className="nav-item">
-                                    <a href="javascript:void(0)"
-                                       className={option.id === this.props.selectedSectionId ? 'active' : ''} onClick={
-                                        this.onFilterOptionSelect.bind(this, option)
-                                    }>
-                                        <i className={`zmdi ${option.icon}`}/>
-                                        <span>{option.name}</span>
-                                    </a>
-                                </li>
-                            )}
-
-                        </ul>
-                    </div>
-                </div>
-            </div>
+  ContactSideBar = (user) => {
+    return <div className="module-side">
+      <div className="module-side-header">
+        <div className="module-logo">
+          <i className="zmdi zmdi-account-box mr-4"/>
+          <span><IntlMessages id="chat.contacts"/></span>
         </div>
+      </div>
 
-    };
+      <div className="module-side-content">
+        <CustomScrollbars className="module-side-scroll scrollbar"
+                          style={{height: this.props.width >= 1200 ? 'calc(100vh - 200px)' : 'calc(100vh - 80px)'}}>
+          <div className="module-add-task">
+            <Button className="jr-btn btn-block" variant="contained" color="primary" aria-label="add"
+                    onClick={this.onAddContact}>
+              <i className="zmdi zmdi-account-add zmdi-hc-fw"/>
+              <span>Add New Contact</span>
+            </Button>
+          </div>
+          <div className="module-side-nav">
+            <ul className="module-nav">
+              {filterOptions.map(option => <li key={option.id} className="nav-item">
+                  <span
+                    className={`jr-link ${option.id === this.props.selectedSectionId ? 'active' : ''}`} onClick={
+                    this.onFilterOptionSelect.bind(this, option)
+                  }>
+                    <i className={`zmdi ${option.icon}`}/>
+                    <span>{option.name}</span>
+                  </span>
+                </li>
+              )}
 
-    addFavourite = (data) => {
-        this.props.addFavourite(data);
-    };
-    onContactSelect = (data) => {
-        this.props.onContactSelect(data);
-    };
+            </ul>
+          </div>
+        </CustomScrollbars>
+      </div>
+    </div>
 
-    onAddContact = () => {
-        this.props.onAddContact();
-    };
-    onContactClose = () => {
-        this.props.onContactClose();
-    };
-    onFilterOptionSelect = (option) => {
-        this.props.onFilterOptionSelect(option);
-    };
-    onSaveContact = (data) => {
-        this.props.onSaveContact(data);
-    };
-    onDeleteContact = (data) => {
-        this.props.onDeleteContact(data);
-    };
-    onDeleteSelectedContact = () => {
-        this.props.onDeleteSelectedContact();
-    };
-    filterContact = (userName) => {
-        if (userName === '') {
-            this.onFilterOptionSelect(this.props.filterOption);
-        } else {
-            this.props.filterContact(userName);
-        }
-    };
-    handleRequestClose = () => {
-        this.props.handleRequestClose();
-    };
-    getAllContact = () => {
-        this.props.getAllContact();
-    };
-    getUnselectedAllContact = () => {
-        this.props.getUnselectedAllContact();
-    };
-    onAllContactSelect = () => {
-        const selectAll = this.props.selectedContacts < this.props.contactList.length;
-        if (selectAll) {
-            this.props.getAllContact();
-        } else {
-            this.props.getUnselectedAllContact();
-        }
-    };
-    onToggleDrawer = () => {
-        this.props.onToggleDrawer();
-    };
+  };
 
-    constructor() {
-        super();
-        this.state = {
-            width: 1200
-        }
+  addFavourite = (data) => {
+    this.props.addFavourite(data);
+  };
+  onContactSelect = (data) => {
+    this.props.onContactSelect(data);
+  };
+
+  onAddContact = () => {
+    this.props.onAddContact();
+  };
+  onContactClose = () => {
+    this.props.onContactClose();
+  };
+  onFilterOptionSelect = (option) => {
+    this.props.onFilterOptionSelect(option);
+  };
+  onSaveContact = (data) => {
+    this.props.onSaveContact(data);
+  };
+  onDeleteContact = (data) => {
+    this.props.onDeleteContact(data);
+  };
+  onDeleteSelectedContact = () => {
+    this.props.onDeleteSelectedContact();
+  };
+  filterContact = (userName) => {
+    if (userName === '') {
+      this.onFilterOptionSelect(this.props.filterOption);
+    } else {
+      this.props.filterContact(userName);
     }
-
-    componentDidMount() {
-        this.manageHeight();
+  };
+  handleRequestClose = () => {
+    this.props.handleRequestClose();
+  };
+  onAllContactSelect = () => {
+    const selectAll = this.props.selectedContacts < this.props.contactList.length;
+    if (selectAll) {
+      this.props.getAllContact();
+    } else {
+      this.props.getUnselectedAllContact();
     }
+  };
+  onToggleDrawer = () => {
+    this.props.onToggleDrawer();
+  };
 
-    componentDidUpdate() {
-        this.manageHeight();
-    }
-
-    manageHeight() {
-        const $body = $('#body');
-        window.addEventListener("resize", () => {
-            if ($body.width() >= 1200) {
-                if (this.state.width !== 1200) {
-                    this.setState({width: 1200})
-                }
-            }
-            else if ($body.width() >= 992) {
-                if (this.state.width !== 992) {
-                    this.setState({width: 992})
-                }
-            }
-            else if ($body.width() >= 768) {
-                if (this.state.width !== 768) {
-                    this.setState({width: 768})
-                }
-            }
-            else if ($body.width() >= 576) {
-                if (this.state.width !== 576) {
-                    this.setState({width: 576})
-                }
-            }
-            else if ($body.width() >= 0) {
-                if (this.state.width !== 0) {
-                    this.setState({width: 0})
-                }
-            }
-
-        });
-
-        if ($body.width() >= 1200) {
-            $('.module-list-scroll').slimscroll({
-                height: 'calc(100vh - 323px)'
-            });
-            $('.module-side-scroll').slimscroll({
-                height: 'calc(100vh - 323px)'
-            });
-        } else if ($body.width() >= 992) {
-            $('.module-list-scroll').slimscroll({
-                height: 'calc(100vh - 323px)'
-            });
-            $('.module-side-scroll').slimscroll({
-                height: 'calc(100vh - 164px)'
-            });
-        } else {
-            $('.module-list-scroll').slimscroll({
-                height: 'calc(100vh - 288px)'
-            });
-            $('.module-side-scroll').slimscroll({
-                height: 'calc(100vh - 164px)'
-            });
-        }
-    }
-
-    updateContactUser(evt) {
-        this.props.updateContactUser(evt.target.value);
-        this.props.filterContact(evt.target.value)
-    }
-
-    render() {
-        const {user, contactList, addContactState, selectedContacts, alertMessage, showMessage, drawerState, searchUser, noContentFoundMessage} = this.props;
-        return (
-            <div className="app-wrapper">
-                <div className="app-module animated slideInUpTiny animation-duration-3">
-
-                    <div className="d-block d-xl-none">
-                        <Drawer type="temporary"
-                                open={drawerState}
-                                onClose={this.onToggleDrawer.bind(this)}>
-                            {this.ContactSideBar(user)}
-                        </Drawer>
-                    </div>
-                    <div className="app-module-sidenav d-none d-xl-flex">
-                        {this.ContactSideBar(user)}
-                    </div>
-
-                    <div className="module-box">
-                        <div className="module-box-header">
-                            <IconButton className="drawer-btn d-block d-xl-none" aria-label="Menu"
-                                        onClick={this.onToggleDrawer.bind(this)}>
-                                <i className="zmdi zmdi-menu"/>
-                            </IconButton>
-                            <SearchBox placeholder="Search contact"
-                                       onChange={this.updateContactUser.bind(this)}
-                                       value={searchUser}/>
-                        </div>
-                        <div className="module-box-content">
-
-                            <div className="module-box-topbar">
-                                <Checkbox
-                                    indeterminate={selectedContacts > 0 && selectedContacts < contactList.length}
-                                    checked={selectedContacts > 0}
-                                    onChange={this.onAllContactSelect.bind(this)}
-                                    value="SelectMail"/>
+  componentWillMount() {
+    this.props.fetchContacts();
+  }
 
 
-                                {selectedContacts > 0 &&
-                                <IconButton
-                                    onClick={this.onDeleteSelectedContact.bind(this)}>
-                                    <i className="zmdi zmdi-delete"/>
-                                </IconButton>}
+  updateContactUser(evt) {
+    this.props.updateContactUser(evt.target.value);
+    this.props.filterContact(evt.target.value)
+  }
 
-                            </div>
-                            <div className="module-list-scroll">
-                                {contactList.length === 0 ?
-                                    <div className="h-100 d-flex align-items-center justify-content-center">
-                                        {noContentFoundMessage}
-                                    </div>
-                                    : <ContactList contactList={contactList}
-                                                   addFavourite={this.addFavourite.bind(this)}
-                                                   onContactSelect={this.onContactSelect.bind(this)}
-                                                   onDeleteContact={this.onDeleteContact.bind(this)}
-                                                   onSaveContact={this.onSaveContact.bind(this)}/>
-                                }
-                            </div>
+  render() {
+    const {user, contactList, addContactState, selectedContacts, alertMessage, showMessage, drawerState, noContentFoundMessage, loader} = this.props;
+    return (
+      <div className="app-wrapper">
+        <div className="app-module animated slideInUpTiny animation-duration-3">
 
-                        </div>
-                    </div>
-                </div>
+          <div className="d-block d-xl-none">
+            <Drawer
+              open={drawerState}
+              onClose={this.onToggleDrawer.bind(this)}>
+              {this.ContactSideBar(user)}
+            </Drawer>
+          </div>
+          <div className="app-module-sidenav d-none d-xl-flex">
+            {this.ContactSideBar(user)}
+          </div>
 
-                <Button className="btn-fixed" variant="fab" color="primary" aria-label="add"
-                        onClick={this.onAddContact}>
-                    <i className="zmdi zmdi-plus"/>
-                </Button>
-                <AddContact open={addContactState} contact={{
-                    'id': contactId++,
-                    'name': '',
-                    'thumb': '',
-                    'email': '',
-                    'phone': '',
-                    'designation': '',
-                    'selected': false,
-                    'starred': false,
-                    'frequently': false,
-                }} onSaveContact={this.onSaveContact}
-                            onContactClose={this.onContactClose} onDeleteContact={this.onDeleteContact}/>
-                <Snackbar
-                    anchorOrigin={{vertical: 'top', horizontal: 'center'}}
-                    open={showMessage}
-                    autoHideDuration={3000}
-                    onClose={this.handleRequestClose}
-                    SnackbarContentProps={{
-                        'aria-describedby': 'message-id',
-                    }}
-                    message={<span id="message-id">{alertMessage}</span>}
-                />
+          <div className="module-box">
+            <div className="module-box-header">
+              <IconButton className="drawer-btn d-block d-xl-none" aria-label="Menu"
+                          onClick={this.onToggleDrawer.bind(this)}>
+                <i className="zmdi zmdi-menu"/>
+              </IconButton>
+              <AppModuleHeader placeholder="Search contact" notification={false} apps={false}
+                               user={this.props.user}
+                               onChange={this.updateContactUser.bind(this)}
+                               value={this.props.searchUser}/>
             </div>
-        )
-    }
+            <div className="module-box-content">
+
+              <div className="module-box-topbar">
+                <Checkbox color="primary"
+                          indeterminate={selectedContacts > 0 && selectedContacts < contactList.length}
+                          checked={selectedContacts > 0}
+                          onChange={this.onAllContactSelect.bind(this)}
+                          value="SelectMail"/>
+
+
+                {selectedContacts > 0 &&
+                <IconButton className="icon-btn"
+                            onClick={this.onDeleteSelectedContact.bind(this)}>
+                  <i className="zmdi zmdi-delete"/>
+                </IconButton>}
+
+              </div>
+              <CustomScrollbars className="module-list-scroll scrollbar"
+                                style={{height: this.props.width >= 1200 ? 'calc(100vh - 261px)' : 'calc(100vh - 240px)'}}>
+                {loader ?
+                  <div className="loader-view-block h-100">
+                    <div className="loader-view">
+                      <CircularProgress/>
+                    </div>
+                  </div>
+                  :
+                  contactList.length === 0 ?
+                    <div className="h-100 d-flex align-items-center justify-content-center">
+                      {noContentFoundMessage}
+                    </div>
+                    : <ContactList contactList={contactList}
+                                   addFavourite={this.addFavourite.bind(this)}
+                                   onContactSelect={this.onContactSelect.bind(this)}
+                                   onDeleteContact={this.onDeleteContact.bind(this)}
+                                   onSaveContact={this.onSaveContact.bind(this)}/>
+                }
+              </CustomScrollbars>
+
+            </div>
+          </div>
+        </div>
+        <AddContact open={addContactState} contact={{
+          'id': contactId++,
+          'name': '',
+          'thumb': '',
+          'email': '',
+          'phone': '',
+          'designation': '',
+          'selected': false,
+          'starred': false,
+          'frequently': false,
+        }} onSaveContact={this.onSaveContact}
+                    onContactClose={this.onContactClose} onDeleteContact={this.onDeleteContact}/>
+        <Snackbar
+          anchorOrigin={{vertical: 'top', horizontal: 'center'}}
+          open={showMessage}
+          autoHideDuration={3000}
+          onClose={this.handleRequestClose}
+          ContentProps={{
+            'aria-describedby': 'message-id',
+          }}
+          message={<span id="message-id">{alertMessage}</span>}
+        />
+      </div>
+    )
+  }
 }
 
 
-const mapStateToProps = ({contacts}) => {
-    const {
-        alertMessage,
-        showMessage,
-        noContentFoundMessage,
-        selectedSectionId,
-        drawerState,
-        user,
-        searchUser,
-        filterOption,
-        allContact,
-        contactList,
-        selectedContact,
-        selectedContacts,
-        addContactState
-    } = contacts;
-    return {
-        alertMessage,
-        showMessage,
-        noContentFoundMessage,
-        selectedSectionId,
-        drawerState,
-        user,
-        searchUser,
-        filterOption,
-        allContact,
-        contactList,
-        selectedContact,
-        selectedContacts,
-        addContactState
-    }
+const mapStateToProps = ({contacts, settings}) => {
+  const {width} = settings;
+  const {
+    loader,
+    alertMessage,
+    showMessage,
+    noContentFoundMessage,
+    selectedSectionId,
+    drawerState,
+    user,
+    searchUser,
+    filterOption,
+    allContact,
+    contactList,
+    selectedContact,
+    selectedContacts,
+    addContactState
+  } = contacts;
+  return {
+    width,
+    loader,
+    alertMessage,
+    showMessage,
+    noContentFoundMessage,
+    selectedSectionId,
+    drawerState,
+    user,
+    searchUser,
+    filterOption,
+    allContact,
+    contactList,
+    selectedContact,
+    selectedContacts,
+    addContactState
+  }
 };
 export default connect(mapStateToProps, {
-    addFavourite,
-    onContactSelect,
-    onAddContact,
-    onContactClose,
-    onFilterOptionSelect,
-    onSaveContact,
-    onDeleteContact,
-    onDeleteSelectedContact,
-    filterContact,
-    getAllContact,
-    getUnselectedAllContact,
-    onAllContactSelect,
-    updateContactUser,
-    onToggleDrawer,
-    handleRequestClose
+  fetchContacts,
+  addFavourite,
+  onContactSelect,
+  onAddContact,
+  onContactClose,
+  onFilterOptionSelect,
+  onSaveContact,
+  onDeleteContact,
+  onDeleteSelectedContact,
+  filterContact,
+  getAllContact,
+  getUnselectedAllContact,
+  onAllContactSelect,
+  updateContactUser,
+  onToggleDrawer,
+  handleRequestClose
 })(ContactWithRedux);

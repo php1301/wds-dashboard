@@ -28,7 +28,8 @@
       padding: 0 10px;
     }
 
-    & li a {
+    & li a,
+    & li .jr-link {
       text-transform: uppercase;
       font-size: 12px;
       padding: 10px 24px;
@@ -39,7 +40,10 @@
 
     & li a:hover,
     & li a:focus,
-    & li a.active {
+    & li a.active,
+    & li .jr-link:hover,
+    & li .jr-link:focus,
+    & li .jr-link.active {
       cursor: pointer;
       background-color: $app-primary;
       border-color: $app-primary;

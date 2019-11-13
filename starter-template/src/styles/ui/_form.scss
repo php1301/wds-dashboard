@@ -3,19 +3,30 @@
   .horizontal-stepper {
     & p,
     & span {
-      display: none;
+      opacity: 0;
+      visibility: hidden;
+      font-size: 12px;
     }
 
     &.active {
       & p,
       & span {
-        display: block;
+        opacity: 1;
+        visibility: visible;
       }
     }
 
     & > *,
     & > button > * {
       @include display-flex(flex, column, nowrap);
+    }
+
+    & .stepperlabel,
+    & .stepperbutton,
+    & .stepperlabel span:first-child,
+    & .stepperbutton span:first-child {
+      opacity: 1;
+      visibility: visible;
     }
   }
 

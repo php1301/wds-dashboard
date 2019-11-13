@@ -6,59 +6,32 @@ h1, h2, h3, h4, h5, h6,
   color: $headings-color;
 }
 
-h1,.h1 {
-  font-size: $h1-font-size;
+[class*="text-"] h1, [class*="text-"] .h1 {
+  color: inherit;
 }
 
-h2,.h2 {
-  font-size: $h2-font-size;
+[class*="text-"] h2, [class*="text-"] .h2 {
+  color: inherit;
 }
 
-h3,.h3 {
-  font-size: $h3-font-size;
+[class*="text-"] h3, [class*="text-"] .h3 {
+  color: inherit;
 }
 
-h4,.h4 {
-  font-size: $h4-font-size;
+[class*="text-"] h4, [class*="text-"] .h4 {
+  color: inherit;
 }
 
-h5,.h5 {
-  font-size: $h5-font-size;
+[class*="text-"] h5, [class*="text-"] .h5 {
+  color: inherit;
 }
 
-h6,.h6 {
-  font-size: $h6-font-size;
+[class*="text-"] h6, [class*="text-"] .h6 {
+  color: inherit;
 }
 
 .text-strikethrough {
   text-decoration: line-through !important;
-}
-
-@media screen and (max-width: 991px) {
-  h1, .h1 {
-    font-size: $h2-font-size;
-  }
-
-  h2, .h2 {
-    font-size: $h3-font-size;
-  }
-
-  h3, .h3 {
-    font-size: $h4-font-size;
-  }
-}
-
-input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-  font-size: 12px;
-}
-input::-moz-placeholder { /* Firefox 19+ */
-  font-size: 12px;
-}
-input:-ms-input-placeholder { /* IE 10+ */
-  font-size: 12px;
-}
-input:-moz-placeholder { /* Firefox 18- */
-  font-size: 12px;
 }
 
 .desc-list {
@@ -70,7 +43,7 @@ input:-moz-placeholder { /* Firefox 18- */
     margin-right: -$jr-card-margin;
 
     &:last-child {
-      border-bottom:0 none;
+      border-bottom: 0 none;
     }
 
     & .card-title {
@@ -87,5 +60,135 @@ input:-moz-placeholder { /* Firefox 18- */
         background-color: $gray-300;
       }
     }
+  }
+}
+
+// Font Weight class
+.jr-font-weight-thin {
+  font-weight: $font-weight-thin;
+}
+
+.jr-font-weight-light {
+  font-weight: $font-weight-light;
+}
+
+.jr-font-weight-normal {
+  font-weight: $font-weight-normal;
+}
+
+.jr-font-weight-medium {
+  font-weight: $font-weight-medium;
+}
+
+.jr-font-weight-bold {
+  font-weight: $font-weight-bold;
+}
+
+.jr-font-weight-black {
+  font-weight: $font-weight-black;
+}
+
+/*Font size Classes*/
+/*8px*/
+.jr-fs-xxs {
+  font-size: 0.5rem !important;
+}
+
+/*10px*/
+.jr-fs-xs {
+  font-size: 0.625rem !important;
+}
+
+/*11px*/
+.jr-fs-11 {
+  font-size: 0.6875rem !important;
+}
+
+/*12px*/
+.jr-fs-sm {
+  font-size: $font-size-sm !important;
+}
+
+/*13px*/
+.jr-fs-13 {
+  font-size: 0.8125rem !important;
+}
+
+/*14px*/
+.jr-fs-md {
+  font-size: $font-size-base !important;
+  line-height: 1;
+}
+
+/*15px*/
+.jr-fs-15 {
+  font-size: 0.9375rem !important;
+}
+
+/*16px*/
+.jr-fs-lg {
+  font-size: 1rem !important;
+  line-height: 1;
+}
+
+/*20px*/
+.jr-fs-xl {
+  font-size: 1.25rem !important;
+  line-height: 1;
+}
+
+/*24px*/
+.jr-fs-xxl {
+  font-size: 1.5rem !important;
+  line-height: 1;
+
+  @media screen and (max-width: 1199px) {
+    font-size: 1.25rem !important; //20px
+  }
+}
+
+/*28px*/
+.jr-fs-2xl {
+  font-size: 1.75rem !important;
+  line-height: 1;
+
+  @media screen and (max-width: 1199px) {
+    font-size: 1.25rem !important; //20px
+  }
+}
+
+/*30px*/
+.jr-fs-xxxl {
+  font-size: 1.875rem !important;
+  line-height: 1;
+
+  @media screen and (max-width: 1199px) {
+    font-size: 1.75rem !important; //28px
+  }
+
+  @media screen and (max-width: 991px) {
+    font-size: 1.5rem !important; //24px
+  }
+}
+
+/*40px*/
+.jr-fs-xlxl {
+  font-size: 2.5rem !important;
+  line-height: 1;
+
+  @media screen and (max-width: 1199px) {
+    font-size:  2rem !important; //32px
+  }
+
+  @media screen and (max-width: 991px) {
+    font-size: 1.75rem !important; //28px
+  }
+}
+
+.jr-fs-cp {
+
+  @media screen and (min-width: 1368px) {
+    font-size: 1rem !important; //16px
+    line-height: 1;
   }
 }

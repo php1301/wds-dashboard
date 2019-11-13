@@ -11,64 +11,65 @@ import IconLabelTabs from './icon/IconLabelTabs';
 import DisabledTabs from './disabled/DisabledTabs';
 import CardBox from 'components/CardBox';
 import ContainerHeader from 'components/ContainerHeader';
+import IntlMessages from 'util/IntlMessages';
 
 const Tabs = ({match}) => {
-    return (
-        <div className="animated slideInUpTiny animation-duration-3">
-            <ContainerHeader title="Tabs" match={match} />
+  return (
+    <div className="animated slideInUpTiny animation-duration-3">
+      <ContainerHeader title={<IntlMessages id="sidebar.components.tabs"/>} match={match}/>
 
-            <div className="row">
-                <CardBox heading="Basic Tabs">
-                    <BasicTabs />
-                </CardBox>
-                <CardBox heading="Fixed Tabs Full width">
-                    <FullWidthTabs />
-                </CardBox>
-            </div>
+      <div className="row">
+        <CardBox heading={<IntlMessages id="component.tabs.basic"/>}>
+          <BasicTabs/>
+        </CardBox>
+        <CardBox heading={<IntlMessages id="component.tabs.fixed"/>}>
+          <FullWidthTabs/>
+        </CardBox>
+      </div>
 
-            <div className="row">
-                <CardBox heading="Icon Tabs">
-                    <IconTabs />
-                </CardBox>
-                <CardBox heading="Disabled Tab">
-                    <DisabledTabs />
-                </CardBox>
-            </div>
+      <div className="row">
+        <CardBox heading={<IntlMessages id="component.tabs.icon"/>}>
+          <IconTabs/>
+        </CardBox>
+        <CardBox heading={<IntlMessages id="component.tabs.disabled"/>}>
+          <DisabledTabs/>
+        </CardBox>
+      </div>
 
-            <div className="row">
-                <CardBox heading="Wrapped Labels">
-                    <BasicTabsWrappedLabel />
-                </CardBox>
-                <CardBox heading="Icon Tabs with Label">
-                    <IconLabelTabs />
-                </CardBox>
-            </div>
+      <div className="row">
+        <CardBox heading={<IntlMessages id="component.tabs.wrappedLabels"/>}>
+          <BasicTabsWrappedLabel/>
+        </CardBox>
+        <CardBox heading={<IntlMessages id="component.tabs.iconWithLabel"/>}>
+          <IconLabelTabs/>
+        </CardBox>
+      </div>
 
-            <div className="row">
-                <CardBox styleName="col-lg-12" heading="Fixed Tabs Centered">
-                    <CenteredTabs />
-                </CardBox>
-            </div>
+      <div className="row">
+        <CardBox styleName="col-lg-12" heading={<IntlMessages id="component.tabs.fixedCentered"/>}>
+          <CenteredTabs/>
+        </CardBox>
+      </div>
 
-            <div className="row">
-                <CardBox styleName="col-lg-12" heading="Automatic Scroll Buttons">
-                    <ScrollableTabsButtonAuto />
-                </CardBox>
-            </div>
+      <div className="row">
+        <CardBox styleName="col-lg-12" heading={<IntlMessages id="component.tabs.automaticScroll"/>}>
+          <ScrollableTabsButtonAuto/>
+        </CardBox>
+      </div>
 
-            <div className="row">
-                <CardBox styleName="col-lg-12" heading="Forced Scroll Buttons">
-                    <ScrollableTabsButtonForce />
-                </CardBox>
-            </div>
+      <div className="row">
+        <CardBox styleName="col-lg-12" heading={<IntlMessages id="component.tabs.forcedScroll"/>}>
+          <ScrollableTabsButtonForce/>
+        </CardBox>
+      </div>
 
-            <div className="row">
-                <CardBox styleName="col-lg-12" heading="Prevent Scroll Buttons">
-                    <ScrollableTabsButtonPrevent />
-                </CardBox>
-            </div>
-        </div>
-    );
+      <div className="row">
+        <CardBox styleName="col-lg-12" heading={<IntlMessages id="component.tabs.preventScroll"/>}>
+          <ScrollableTabsButtonPrevent/>
+        </CardBox>
+      </div>
+    </div>
+  );
 };
 
 export default (Tabs);

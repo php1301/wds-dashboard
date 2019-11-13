@@ -1,20 +1,23 @@
 import React from 'react';
 import BigCalendar from 'react-big-calendar';
 import events from '../events';
+import moment from 'moment';
+
+const localizer = BigCalendar.momentLocalizer(moment);
 
 function Event({event}) {
-    return (
-        <span>
+  return (
+    <span>
       <strong>
       {event.title}
       </strong>
-            {event.desc && (':  ' + event.desc)}
+      {event.desc && (':  ' + event.desc)}
     </span>
-    )
+  )
 }
 
 function EventAgenda({event}) {
-    return <span>
+  return <span>
     <em style={{color: 'magenta'}}>{event.title}</em>
     <p>{event.desc}</p>
   </span>
@@ -22,21 +25,22 @@ function EventAgenda({event}) {
 
 
 const Rendering = () => {
-    return (
-        <div className="app-calendar animated slideInUpTiny animation-duration-3">
-            <BigCalendar
-                events={events}
-                defaultDate={new Date(2015, 3, 1)}
-                defaultView='agenda'
-                components={{
-                    event: Event,
-                    agenda: {
-                        event: EventAgenda
-                    }
-                }}
-            />
-        </div>
-    )
+  return (
+    <div className="app-calendar animated slideInUpTiny animation-duration-3">
+      <BigCalendar
+        events={events}
+        localizer={localizer}
+        defaultDate={new Date(2015, 3, 1)}
+        defaultView='agenda'
+        components={{
+          event: Event,
+          agenda: {
+            event: EventAgenda
+          }
+        }}
+      />
+    </div>
+  )
 };
 
 export default Rendering;

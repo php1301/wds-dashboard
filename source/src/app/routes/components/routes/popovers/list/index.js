@@ -1,27 +1,27 @@
 import React from 'react';
 import {Popover, PopoverBody, PopoverHeader} from 'reactstrap';
-import Button from 'material-ui/Button';
+import Button from '@material-ui/core/Button';
 
 class PopoverItem extends React.Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
 
-        this.toggle = this.toggle.bind(this);
-        this.state = {
-            popoverOpen: false
-        };
-    }
+    this.toggle = this.toggle.bind(this);
+    this.state = {
+      popoverOpen: false
+    };
+  }
 
-    toggle() {
-        this.setState({
-            popoverOpen: !this.state.popoverOpen
-        });
-    }
+  toggle() {
+    this.setState({
+      popoverOpen: !this.state.popoverOpen
+    });
+  }
 
-    render() {
-        return (
-            <span className="d-inline-block">
-        <Button variant="raised" color="primary" id={'Popover-' + this.props.id} onClick={this.toggle}>
+  render() {
+    return (
+      <span className="d-inline-block">
+        <Button variant="contained" color="primary" id={'Popover-' + this.props.id} onClick={this.toggle}>
           {this.props.item.text}
         </Button>
         <Popover placement={this.props.item.placement} isOpen={this.state.popoverOpen}
@@ -30,45 +30,45 @@ class PopoverItem extends React.Component {
           <PopoverBody>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</PopoverBody>
         </Popover>
       </span>
-        );
-    }
+    );
+  }
 }
 
 class PopoversList extends React.Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
 
-        this.state = {
-            popovers: [
-                {
-                    placement: 'top',
-                    text: 'Top'
-                },
-                {
-                    placement: 'bottom',
-                    text: 'Bottom'
-                },
-                {
-                    placement: 'left',
-                    text: 'Left'
-                },
-                {
-                    placement: 'right',
-                    text: 'Right'
-                }
-            ]
-        };
-    }
+    this.state = {
+      popovers: [
+        {
+          placement: 'top',
+          text: 'Top'
+        },
+        {
+          placement: 'bottom',
+          text: 'Bottom'
+        },
+        {
+          placement: 'left',
+          text: 'Left'
+        },
+        {
+          placement: 'right',
+          text: 'Right'
+        }
+      ]
+    };
+  }
 
-    render() {
-        return (
-            <div className="manage-margin">
-                {this.state.popovers.map((popover, i) => {
-                    return <PopoverItem key={i} item={popover} id={i}/>;
-                })}
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div className="manage-margin">
+        {this.state.popovers.map((popover, i) => {
+          return <PopoverItem key={i} item={popover} id={i}/>;
+        })}
+      </div>
+    );
+  }
 }
 
 export default PopoversList;

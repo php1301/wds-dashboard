@@ -61,6 +61,10 @@
 
 .rbc-event {
   min-height: 50px;
+
+  &:focus {
+    outline: none;
+  }
 }
 
 @media screen and (max-width: 867px) {

@@ -1,7 +1,7 @@
 import React from 'react';
 
-import ContainerHeader from "components/ContainerHeader/index";
-import CardBox from "components/CardBox/index";
+import ContainerHeader from 'components/ContainerHeader/index';
+import CardBox from 'components/CardBox/index';
 
 import TextFields from '../../../components/routes/textFields/textField/TextFields';
 import ComposedTextField from '../../../components/routes/textFields/components/ComposedTextField';
@@ -43,156 +43,164 @@ import AlertDialog from '../../../components/routes/dialogs/alerts/AlertDialog';
 import AlertDialogSlide from '../../../components/routes/dialogs/slideAlerts/AlertDialogSlide';
 import ConfirmationDialogDemo from '../../../components/routes/dialogs/confirmation/ConfirmationDialogDemo';
 import FullScreenDialog from '../../../components/routes/dialogs/fullScreen/FullScreenDialog';
-import FormDialog from "../../../components/routes/dialogs/formAlerts/FormDialog";
+import FormDialog from '../../../components/routes/dialogs/formAlerts/FormDialog';
 
 import Chip from '../../../components/routes/chips/simpleChip/Chips';
 import ChipsArray from '../../../components/routes/chips/chipArray/ChipsArray';
-
+import IntlMessages from 'util/IntlMessages';
 
 const Form = ({match}) => {
-    return (
+  return (
 
-        <div className="animated slideInUpTiny animation-duration-3">
-            <ContainerHeader title="Text Fields" match={match}/>
+    <div className="animated slideInUpTiny animation-duration-3">
+      <ContainerHeader title={<IntlMessages id="sidebar.forms.components"/>} match={match}/>
 
-            <div className="row">
-                <CardBox styleName="col-lg-12" childrenStyle="d-flex justify-content-center" heading="TextField">
-                    <TextFields/>
-                </CardBox>
-                <CardBox styleName="col-lg-12" childrenStyle="d-flex justify-content-center" heading="Components">
-                    <ComposedTextField/>
-                </CardBox>
-                <CardBox styleName="col-lg-12" childrenStyle="d-flex justify-content-center" heading="Layout">
-                    <TextFieldMargins/>
-                </CardBox>
-                <CardBox styleName="col-lg-12" childrenStyle="d-flex justify-content-center" heading="Inputs">
-                    <Inputs/>
-                </CardBox>
-            </div>
-
-
-            <div className="row">
-                <CardBox styleName="col-lg-12" childrenStyle="d-flex justify-content-center" heading="Checkboxes">
-                    <Checkboxes/>
-                </CardBox>
-                <CardBox childrenStyle="d-flex justify-content-center" heading="Switches">
-                    <Switches/>
-                </CardBox>
-                <CardBox childrenStyle="d-flex justify-content-center" heading="Switches">
-                    <SwitchLabels/>
-                </CardBox>
-                <CardBox styleName="col-lg-12" childrenStyle="d-flex justify-content-center"
-                         heading="Radio Buttons">
-                    <RadioButtons/>
-                </CardBox>
-                <CardBox styleName="col-lg-12" childrenStyle="d-flex justify-content-center"
-                         heading="Radio Buttons Group">
-                    <RadioButtonsGroup/>
-                </CardBox>
-            </div>
+      <div className="row">
+        <CardBox styleName="col-lg-12"
+                 heading={<IntlMessages id="component.textFields.textfield"/>}>
+          <TextFields/>
+        </CardBox>
+        <CardBox styleName="col-lg-12"
+                 heading={<IntlMessages id="sidebar.forms.components"/>}>
+          <ComposedTextField/>
+        </CardBox>
+        <CardBox styleName="col-lg-12"
+                 heading={<IntlMessages id="component.textFields.layout"/>}>
+          <TextFieldMargins/>
+        </CardBox>
+        <CardBox styleName="col-lg-12"
+                 heading={<IntlMessages id="component.textFields.inputs"/>}>
+          <Inputs/>
+        </CardBox>
+      </div>
 
 
-            <div className="row">
-                <CardBox styleName="col-lg-12" childrenStyle="d-flex justify-content-center"
-                         heading="Simple select">
-                    <SimpleSelect/>
-                </CardBox>
-                <CardBox styleName="col-lg-12" childrenStyle="d-flex justify-content-center"
-                         heading="Native Select">
-                    <NativeSelect/>
-                </CardBox>
-                <CardBox heading="Multiple select">
-                    <MultipleSelect/>
-                </CardBox>
-                <CardBox childrenStyle="d-flex justify-content-center" heading="Dialog select">
-                    <DialogSelect/>
-                </CardBox>
-            </div>
+      <div className="row">
+        <CardBox styleName="col-lg-12"
+                 heading={<IntlMessages id="component.selectionControl.checkboxes"/>}>
+          <Checkboxes/>
+        </CardBox>
+        <CardBox
+          heading={<IntlMessages id="component.selectionControl.switches"/>}>
+          <Switches/>
+        </CardBox>
+        <CardBox
+          heading={<IntlMessages id="component.selectionControl.switches"/>}>
+          <SwitchLabels/>
+        </CardBox>
+        <CardBox styleName="col-lg-12"
+                 heading={<IntlMessages id="component.selectionControl.basicRadio"/>}>
+          <RadioButtons/>
+        </CardBox>
+        <CardBox styleName="col-lg-12"
+                 heading={<IntlMessages id="component.selectionControl.radioBtnGroup"/>}>
+          <RadioButtonsGroup/>
+        </CardBox>
+      </div>
 
 
-            <div className="row">
-                <CardBox childrenStyle="d-flex justify-content-center" heading="Indeterminate Circular">
-                    <CircularIndeterminate/>
-                </CardBox>
-                <CardBox childrenStyle="d-flex justify-content-center" heading="Determinate Circular">
-                    <CircularDeterminate/>
-                </CardBox>
-                <CardBox heading="Indeterminate Linear">
-                    <LinearIndeterminate/>
-                </CardBox>
-                <CardBox heading="Determinate Linear">
-                    <LinearDeterminate/>
-                </CardBox>
-                <CardBox heading="Buffer Linear">
-                    <LinearBuffer/>
-                </CardBox>
-                <CardBox heading="Query Linear">
-                    <LinearQuery/>
-                </CardBox>
-                <CardBox styleName="col-lg-12" childrenStyle="d-flex justify-content-center"
-                         heading="Interactive Integration">
-                    <CircularFab/>
-                </CardBox>
-            </div>
+      <div className="row">
+        <CardBox styleName="col-lg-12"
+                 heading={<IntlMessages id="component.selects.simple"/>}>
+          <SimpleSelect/>
+        </CardBox>
+        <CardBox styleName="col-lg-12"
+                 heading={<IntlMessages id="component.selects.native"/>}>
+          <NativeSelect/>
+        </CardBox>
+        <CardBox heading={<IntlMessages id="component.selects.multiple"/>}>
+          <MultipleSelect/>
+        </CardBox>
+        <CardBox
+          heading={<IntlMessages id="component.selects.dialog"/>}>
+          <DialogSelect/>
+        </CardBox>
+      </div>
 
 
-            <div className="row">
-                <CardBox childrenStyle="d-flex justify-content-center" heading="Date pickers">
-                    <DatePickers/>
-                </CardBox>
-                <CardBox childrenStyle="d-flex justify-content-center" heading="Time pickers">
-                    <TimePickers/>
-                </CardBox>
-                <CardBox childrenStyle="d-flex justify-content-center" heading="Date & Time pickers">
-                    <DateAndTimePickers/>
-                </CardBox>
-                <CardBox childrenStyle="d-flex justify-content-center" heading="Custom Date & Time pickers">
-                    <CustomDateTimePicker/>
-                </CardBox>
-                <CardBox childrenStyle="d-flex justify-content-center" heading="Week picker">
-                    <WeekPicker/>
-                </CardBox>
-            </div>
+      <div className="row">
+        <CardBox
+          heading={<IntlMessages id="component.progress.indeterminateCircular"/>}>
+          <CircularIndeterminate/>
+        </CardBox>
+        <CardBox
+          heading={<IntlMessages id="component.progress.determinateCircular"/>}>
+          <CircularDeterminate/>
+        </CardBox>
+        <CardBox heading={<IntlMessages id="component.progress.indeterminateLinear"/>}>
+          <LinearIndeterminate/>
+        </CardBox>
+        <CardBox heading={<IntlMessages id="component.progress.determinateLinear"/>}>
+          <LinearDeterminate/>
+        </CardBox>
+        <CardBox heading={<IntlMessages id="component.progress.bufferLinear"/>}>
+          <LinearBuffer/>
+        </CardBox>
+        <CardBox heading={<IntlMessages id="component.progress.queryLinear"/>}>
+          <LinearQuery/>
+        </CardBox>
+        <CardBox styleName="col-lg-12"
+                 heading={<IntlMessages id="component.progress.interactiveIntegration"/>}>
+          <CircularFab/>
+        </CardBox>
+      </div>
 
 
-            <div className="row">
-                <CardBox childrenStyle="text-center" heading="Alerts">
-                    <AlertDialog/>
-                </CardBox>
-                <CardBox childrenStyle="text-center" heading="Alert Dialogs">
-                    <AlertDialogSlide/>
-                </CardBox>
-                <CardBox childrenStyle="text-center" heading="Simple Dialogs">
-                    <SimpleDialogDemo/>
-                </CardBox>
-                <CardBox childrenStyle="text-center" heading="Full-Screen Dialogs">
-                    <FullScreenDialog/>
-                </CardBox>
-                <CardBox childrenStyle="text-center" heading="Form Dialog">
-                    <div className="card d-inline-block">
-                        <FormDialog/>
-                    </div>
-                </CardBox>
-                <CardBox childrenStyle="text-center" heading="Confirmation Dialogs">
-                    <div className="card d-inline-block">
-                        <ConfirmationDialogDemo/>
-                    </div>
-                </CardBox>
+      <div className="row">
+        <CardBox heading={<IntlMessages id="picker.date.date"/>}>
+          <DatePickers/>
+        </CardBox>
+        <CardBox heading={<IntlMessages id="picker.date.time"/>}>
+          <TimePickers/>
+        </CardBox>
+        <CardBox
+          heading={<IntlMessages id="picker.date.dateNTime"/>}>
+          <DateAndTimePickers/>
+        </CardBox>
+        <CardBox
+          heading={<IntlMessages id="picker.date.customDate"/>}>
+          <CustomDateTimePicker/>
+        </CardBox>
+        <CardBox heading={<IntlMessages id="picker.date.week"/>}>
+          <WeekPicker/>
+        </CardBox>
+      </div>
 
-            </div>
+      <div className="row">
+        <CardBox childrenStyle="text-center" heading={<IntlMessages id="sidebar.components.alerts"/>}>
+          <AlertDialog/>
+        </CardBox>
+        <CardBox childrenStyle="text-center" heading="Alert Dialogs">
+          <AlertDialogSlide/>
+        </CardBox>
+        <CardBox childrenStyle="text-center" heading="Simple Dialogs">
+          <SimpleDialogDemo/>
+        </CardBox>
+        <CardBox childrenStyle="text-center" heading="Full-Screen Dialogs">
+          <FullScreenDialog/>
+        </CardBox>
+        <CardBox childrenStyle="text-center" heading="Form Dialog">
+          <div className="card d-inline-block">
+            <FormDialog/>
+          </div>
+        </CardBox>
+        <CardBox childrenStyle="text-center" heading="Confirmation Dialogs">
+          <div className="card d-inline-block">
+            <ConfirmationDialogDemo/>
+          </div>
+        </CardBox>
+      </div>
 
-
-            <div className="row">
-                <CardBox styleName="col-lg-12" heading="Chip">
-                    <Chip/>
-                </CardBox>
-                <CardBox styleName="col-lg-12" heading="Chip Array">
-                    <ChipsArray/>
-                </CardBox>
-            </div>
-        </div>
-
-    );
+      <div className="row">
+        <CardBox styleName="col-lg-12" heading={<IntlMessages id="sidebar.components.chips"/>}>
+          <Chip/>
+        </CardBox>
+        <CardBox styleName="col-lg-12" heading={<IntlMessages id="component.chips.array"/>}>
+          <ChipsArray/>
+        </CardBox>
+      </div>
+    </div>
+  );
 };
 
 export default Form;

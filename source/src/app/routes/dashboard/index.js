@@ -1,21 +1,21 @@
 import React from 'react';
 import {Redirect, Route, Switch} from 'react-router-dom';
-
-import Default from './routes/Default'
-import ECommerce from './routes/ECommerce'
-import News from './routes/News'
-import Intranet from './routes/Intranet'
+import asyncComponent from '../../../util/asyncComponent';
 
 const Dashboard = ({match}) => (
-    <div className="app-wrapper">
-        <Switch>
-            <Redirect exact from={`${match.url}/`} to={`${match.url}/default`}/>
-            <Route path={`${match.url}/default`} component={Default}/>
-            <Route path={`${match.url}/eCommerce`} component={ECommerce}/>
-            <Route path={`${match.url}/news`} component={News}/>
-            <Route path={`${match.url}/intranet`} component={Intranet}/>
-        </Switch>
-    </div>
+  <div className="app-wrapper">
+    <Switch>
+      <Redirect exact from={`${match.url}/`} to={`${match.url}/crm`}/>
+      <Route path={`${match.url}/crm`} component={asyncComponent(() => import('./routes/CRM'))}/>
+      <Route path={`${match.url}/listing`} component={asyncComponent(() => import('./routes/Listing'))}/>
+      <Route path={`${match.url}/crypto`} component={asyncComponent(() => import('./routes/Crypto'))}/>
+      <Route path={`${match.url}/eCommerce`} component={asyncComponent(() => import('./routes/ECommerce'))}/>
+      <Route path={`${match.url}/news`} component={asyncComponent(() => import('./routes/News'))}/>
+      <Route path={`${match.url}/intranet`} component={asyncComponent(() => import('./routes/Intranet'))}/>
+      <Route path={`${match.url}/misc`} component={asyncComponent(() => import('./routes/Misc'))}/>
+      <Route component={asyncComponent(() => import('app/routes/extraPages/routes/404'))}/>
+    </Switch>
+  </div>
 );
 
 export default Dashboard;

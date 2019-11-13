@@ -10,8 +10,10 @@
   vertical-align: middle; // match .btn alignment given font-size hack above
 
   > .jr-btn {
+    background-color: $gray-200;
     position: relative;
     flex: 0 1 auto;
+    border-color: $border-color;
 
     // Bring the hover, focused, and "active" buttons to the front to overlay
     // the borders properly
@@ -22,6 +24,27 @@
     &:active,
     &.active {
       z-index: 2;
+    }
+
+    &.active {
+      background-color: $app-primary;
+      color: $white;
+      border-color: $app-primary;
+    }
+
+  }
+
+  > .jr-flat-btn {
+    background-color: transparent;
+    border-color: transparent;
+    &.active {
+      background-color: transparent;
+      color: $app-primary;
+      &:hover,
+      &:focus {
+        background-color: rgba($text-muted, 0.12);
+        color: $app-primary;
+      }
     }
   }
 
@@ -87,14 +110,17 @@
   @include border-left-radius(0 !important);
 }
 
-
 // Sizing
 //
 // Remix the default button sizing classes into new ones for easier manipulation.
 
-.btn-group-sm > .jr-btn { @extend .jr-btn-sm; }
-.btn-group-lg > .jr-btn { @extend .jr-btn-lg; }
+.btn-group-sm > .jr-btn {
+  @extend .jr-btn-sm;
+}
 
+.btn-group-lg > .jr-btn {
+  @extend .jr-btn-lg;
+}
 
 //
 // Split button dropdowns
@@ -129,7 +155,6 @@
     @include box-shadow(none);
   }
 }
-
 
 //
 // Vertical button groups
@@ -183,27 +208,13 @@
   }
 }
 
-
-// Checkbox and radio options
-//
-// In order to support the browser's form validation feedback, powered by the
-// `required` attribute, we have to "hide" the inputs via `clip`. We cannot use
-// `display: none;` or `visibility: hidden;` as that also hides the popover.
-// Simply visually hiding the inputs via `opacity` would leave them clickable in
-// certain cases which is prevented by using `clip` and `pointer-events`.
-// This way, we ensure a DOM element is visible to position the popover from.
-//
-// See https://github.com/twbs/bootstrap/pull/12794 and
-// https://github.com/twbs/bootstrap/pull/14559 for more information.
-
 [data-toggle="buttons"] {
   > .jr-btn,
   > .btn-group > .jr-btn {
     input[type="radio"],
     input[type="checkbox"] {
       position: absolute;
-      clip: rect(0,0,0,0);
-      //pointer-events: none;
+      clip: rect(0, 0, 0, 0);
     }
   }
 }
